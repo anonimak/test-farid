@@ -19,4 +19,4 @@ jobs:
           username: ${{ secrets.SSH_TEST_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: 'cd ~/project/test-farid && npm install'
+          script: 'cd ~/project/test-farid && git pull && npm install'
