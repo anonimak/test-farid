@@ -12,7 +12,7 @@ jobs:
         os: [ubuntu-latest]
         node: [16]
     steps:
-      - name: Deploy to production
+      - name: Deploy to uat
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_TEST_HOST }}
