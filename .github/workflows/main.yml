@@ -1,0 +1,22 @@
+name: CD Main
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+    steps:
+      - name: Deploy to production
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_TEST_HOST }}
+          username: ${{ secrets.SSH_TEST_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: 'cd ~/project/test-farid && npm install'
