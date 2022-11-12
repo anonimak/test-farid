@@ -1,0 +1,22 @@
+name: CD UAT
+
+on:
+  push:
+    branches: [uat]
+
+jobs:
+  deploy:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+    steps:
+      - name: Deploy to uat
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_TEST_HOST }}
+          username: ${{ secrets.SSH_TEST_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: 'cd ~/project/uat/test-farid && npm install'
